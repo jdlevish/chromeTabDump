@@ -5,6 +5,7 @@ const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
 // Reacts to a button click by marking the selected button and saving
 // the selection
 function handleButtonClick(event) {
+    console.log(chrome)
     // Remove styling from the previously selected color
     let current = event.target.parentElement.querySelector(
         `.${selectedClassName}`
@@ -21,6 +22,7 @@ function handleButtonClick(event) {
 
 // Add a button to the page for each supplied color
 function constructOptions(buttonColors) {
+
     chrome.storage.sync.get("color", (data) => {
         let currentColor = data.color;
         // For each color we were provided…
