@@ -4,6 +4,8 @@ let changeColor = document.getElementById("changeColor");
 chrome.storage.sync.get("color", ({ color }) => {
     changeColor.style.backgroundColor = color;
 });
+// 
+console.log(chrome.sessions)
 // When the button is clicked, inject setPageBackgroundColor into current page
 changeColor.addEventListener("click", async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -13,11 +15,14 @@ changeColor.addEventListener("click", async () => {
         function: setPageBackgroundColor
     }).then(chrome.windows.getAll({ populate: true }, function (windowList) {
         // gets url of all open tabs in array from window object
+        const date = Date()
+        console.log(date)
         const allTabs = windowList[0].tabs;
+        console.log(allTabs)
         chrome.bookmarks.getTree((tree) => { console.log(tree) })
         chrome.bookmarks.create(
             // creates folder in bookmark bar
-            { 'parentId': "1", 'title': 'tab dump' },
+            { 'parentId': "1", 'title': 'tab dump: ' + date },
             function (newFolder) {
                 console.log("added folder: " + newFolder.id);
                 //   maps open tabs creating an individual bookmark for each url inside folder created above

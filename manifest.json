@@ -12,7 +12,8 @@
         "activeTab",
         "scripting",
         "tabs",
-        "windows"
+        "windows",
+        "sessions"
     ],
     "action": {
         "default_popup": "popup.html",
